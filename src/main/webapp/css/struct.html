@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/struct.html</title>
+    <style>
+        * {
+            font-size:  10px;
+        }
+           ul> li:nth-child(2n) {
+                color: red;
+            }
+            div  li:first-of-type {
+                color: blue;
+            }
+            div li :first-of-type{
+                background-color: yellow;
+            }
+
+            ol>li:not(:nth-child(3)) {
+                    background-color: greenyellow;
+            }
+
+            ul::first-line{
+                font-size: 4em;
+            }
+           ol>li::selection {
+                    background-color:  aqua;
+                    color: blue;
+                }
+            ol>li:nth-child(2n)::after{
+                content: "  selected!!";
+            }
+
+            ol>li:hover{
+                background-color: cadetblue;
+                color:  wheat;
+            }
+
+            ol>li:nth-child(2) +li:nth-child(3){
+                background-color: chocolate;   
+            }
+    </style>
+</head>
+<body>
+    <div>
+        <ol>
+            <h3>another</h3>
+            <li>Espresso</li>
+            <li>Americano</li>
+            <li>Cafe Latte</li>
+            <li>Cafe Mocha</li>
+            <li>Caramel Latte</li>
+            <li>Cpuccino</li>
+        </ol>
+    </div>
+
+        <ul>
+            <li>Espresso</li>
+            <li>Americano</li>
+            <li>Cafe Latte</li>
+            <li>Cafe Mocha</li>
+            <li>Caramel Latte</li>
+            <li>Cpuccino</li>
+        </ul>
+</body>
+</html>
