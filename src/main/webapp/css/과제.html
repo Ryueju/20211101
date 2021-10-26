@@ -5,15 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>css/과제.html</title>
+    <style>
+         #t1{
+             float: left; 
+             margin-left: 5px;
+         }
+
+         #t2{
+            color: rgb(16, 172, 211);
+            padding-left: 10px;
+         }
+         select {
+            
+             width: 80px;
+             height: 30px;
+             float:left;
+             margin-right: 7px;
+         }
+         #p1{
+             margin: 0%;
+             
+             height: ;
+             float:left;
+         }
+         #p2{
+            height: 30px;
+            width: 30px;
+             margin-left: 10px;
+             float: left;
+         }
+         #p3{
+             float: left;
+             border: 1px solid rgb(161, 161, 161);
+             background-color: rgb(161, 161, 161);
+             width: 70px;
+             height: 23px;
+             text-align: center;
+             color: white;
+             border-radius: 2px;
+             margin-top: 2px;
+             content: normal;
+         }
+         #p4{
+             float: left;
+             width: 100px;
+             height: 23px;
+         }
+         #p5 {
+             float: left;
+             width: 100px;
+             height: 23px;
+         }
+         
+        
+    </style>
 </head>
 <body>
-        <div style="width:110px; height: 150px; float: left; "> <b>상품 문의하기</b> </div>
-        <div style="width: 5px; height: 150px; float: left; color: rgb(16, 172, 211);"> <b>4</b> </div>
-
-        <form>
+        <h3>
+        <div id="t1"> <b>상품 문의하기</b> </div>
+        <div id="t2"><b>&nbsp;4</b> </div>
+        </h3>
+        
+        <div class="title">
             <select name="subject" >
                 <option value="1" selected>제목</option>
+                <option value="2">글쓴이</option>
             </select>
-        </form>
+            <p id="p1"> <input type="text"></p>
+            <p id="p2"><input type="submit" value="검색"></p>
+            <p style="font-size: 10px;float: left; margin-left: 12px;">&nbsp;총 검색 결과 4건</p>
+            <p style="font-size: 13px;" id="p3"><b>문의하기</b>&nbsp;</p>
+            <p style="font-size: 13px;" id="p4"><b>내 문의 보기</b>&nbsp;</p>
+            <p style="font-size: 13px;" id="p5">| &nbsp;<b>전체 문의 보기</b></p>
+        </div>
 </body>
 </html>
