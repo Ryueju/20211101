@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice.html</title>
+    <style>
+        #head {
+            background-color: rgb(46, 100, 67);
+            display: block;
+            height: 60px;
+        }
+        #logo {
+            width: 170px;
+            margin-top: 12px;
+            float: left;
+        }
+        #sns {
+            width: 30px;
+            float:right;
+            margin-top: 15px;
+            padding-right: 10px;
+            padding-left: 1px;
+        }
+       
+        /* ul>li{
+            background-color: rgb(46, 100, 67);
+            list-style-type: none;
+            float: left;
+            color: honeydew;
+            font-size: 14px;
+            margin-left: 10px;
+
+        } */
+        #line {
+            background-color: rgba(192, 202, 192, 0.877); 
+            width:100%;
+            height: 2px;
+            display:inherit;
+        }
+        .main{
+            background-color: rgb(46, 100, 67); 
+            color: ivory;
+            height: 40px;
+        }
+        #menu{
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            line-height: 38px;
+        }
+        .image {
+            position: relative;
+        }
+        .image .text {
+            position:absolute;
+            top:110px;
+            left:10px;
+            color: ivory;
+        }
+     div>div>p{
+         font-size: 12px;
+         line-height: 4px;
+     }
+     div>div>h2{
+         line-height: 5px;
+     }
+     div.home>img {
+         width: 48px;
+         float: left;
+    
+     }
+     div.home>select{
+         width: 45%;
+         height: 45px;
+         float: left;
+         
+     }
+     h1#t{
+         text-align: center;
+      
+         font-family: Verdana, Geneva, Tahoma, sans-serif;
+     }
+     div#blackline{
+        width: 40px; 
+        height: 4px; 
+        background-color: 
+        black;  
+        margin-left: 340px;
+     }
+    </style>
+</head>
+<body>
+    <div id="head">
+        <img id="logo" src="logo.PNG" alt="망원동 티라미수">
+        <img id="sns" src="menu.png">
+        <img id="sns" src="youtube.png">
+        <img id="sns" src="facebook.png">
+        <img id="sns" src="instagram.png">
+    </div>
+    <div class="main">
+        <div id="line"></div>
+        <span id="menu">브랜드소개</span>
+        <span id="menu">메뉴</span>
+        <span id="menu">매장안내</span>
+        <span id="menu">가맹안내</span>
+        <span id="menu">공지&문의</span>
+    </div>
+    <div class="image">
+        <img style="width: 100%;" src="menu2.jpg">
+        <div class="text">
+            <h2 style="font-size: 30px;">MENU</h2>
+            <p>언제 어디서나 간편하게 즐길 수 있는 컵 티라미수,</p>
+            <p>망원동티라미수의 메뉴를 소개합니다</p>
+            </div>
+    </div>
+    <div class="home">
+        <img src="home.PNG">
+        <select name="menu">
+            <option value="1" >BRAND</option>
+            <option value="2" >STORE</option>
+            <option value="3" selected>MENU</option>
+            <option value="4" >FRANCHISE</option>
+        </select>
+        <select name="menu">
+            <option value="1" selected>티라미수</option>
+            <option value="2" >홀케이크</option>
+            <option value="3" >디저트</option>
+            <option value="4" >시그니처음료</option>
+        </select>
+        
+    </div>
+    
+    <div>
+        <head>
+            <p></p>
+            <h1 id="t">티라미수</h1>
+            <div id="blackline"></div>
+
+        </head>
+    </div>
+</body>
+</html>
