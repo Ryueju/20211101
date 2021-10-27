@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/write.html</title>
+</head>
+<body>
+        <script> //window object.document object.write method
+               var str = '<h1>hello, world</h1>';
+               var names = ['홍길동','김민수','박철민'];
+               document.write('<ul>');
+               // window.document.write('hello, world..');
+                // window.document.write('<h1>hello, world..</h1>');
+window.document.write(str);
+for( var i = 0; i<3; i++){
+
+    window.document.write(str);
+}
+for( var name of names) {
+    window.document.write('<h1>hello' + name + '</h1>');
+}
+for( var name of names) {
+    window.document.write('<li>hello' + name + '</li>');
+}
+document.write('</ul>');
+        </script>
+</body>
+</html>

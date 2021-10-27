@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/animation2.html</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(108, 146, 115);
+            position: relative;
+            animation-name:  move;
+            animation-duration: 3s;
+            animation-direction: alternate-reverse;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes move {
+            0% {
+                    background-color: indianred;
+                    left: 0;
+                    top: 0;
+            }
+            25%{
+                    background-color: rgb(255, 255, 134);
+                    left: 100px;
+                    top: 0;
+            }
+            50%{
+                    background-color: rgb(139, 139, 255);
+                    left: 100px;
+                    top: 100px;
+            }
+            75%{
+                background-color: rgb(60, 92, 60);
+                left: 0;
+                top: 100px;
+            }
+            100%{
+                    background-color: indigo;
+                    left: 0;
+                    top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

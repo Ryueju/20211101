@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array.html</title>
+    <style>
+       tbody> tr:nth-last-of-type(2n +1) {
+            background-color:  yellow;
+        }
+
+       img {
+           width: 130px;
+           height: 150px;
+       }
+    </style>
+</head>
+<body>
+
+    <!-- <table>
+        <tr>
+            <td>학생</td>
+            <td>나이</td>
+            <td>점수</td>
+        </tr>
+    </table> -->
+        <script>
+                var person1 = {
+                    name : '홍길동' ,
+                    age: 20,
+                    score:80 ,
+                    image:'44.PNG'
+                };
+                var person2 = {
+                    name: '김민수',
+                    age:23,
+                    score:84 ,//object설정할때는 중괄호에 value값을 넣어주면 됨
+                    image:'55.jpg'
+                }
+                var person3 = {
+                    name: '홍성민',
+                    age:25,
+                    score:88,
+                    image:'66.jpg'
+                }
+                var objAry = [ person1, person2,person3];
+                var str = '<thead><tr><th>이름</th><th>나이</th><th>점수</th><th></tr></thead>';
+                document.write('<table border="1">'+ str + '<tbody>');
+                    for(var i = 0; i<objAry.length; i++){
+                        document.write('<tr>');
+                        for(var field in objAry[i]){
+                            if(field == 'image'){
+                                document.write('<td><img src=" ' + objAry[i][field] +' "> </td>' );
+                            
+                            } else {
+                                document.write('<td>' + objAry[i][field] + '</td>');
+                            }
+                   
+                  
+                        }
+                        document.write('</tr>');
+                    }
+                    document.write('</tbody></table>');
+                //첫번째 사람의 이름을 가져오고싶을 때
+                objAry[0].name;
+                objAry[1].name;
+                for(var i =0; i<objAry.length; i++){
+                    // console.log(`name: ${objAry[i].name}, age: ${objAry[i].age}`);
+                    console.log(`${i+1}번째 데이터 =======`);
+                    for(var field in objAry[i]) {
+                        //object갯수만큼 반복함
+                        console.log(`${field}, ${objAry[i][field]}`);
+                }
+                }
+            
+        </script>
+
+</body>
+</html>

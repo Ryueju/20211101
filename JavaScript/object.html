@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/object.html</title>
+</head>
+<body>
+        <script>
+             var obj = {
+                 id: 'admin',
+                 name: '관리자',
+                 point : 90
+             }
+
+             console.log(obj);
+             console.log(obj.id);
+             console.log(obj['name']);
+             var field = 'point';
+             console.log(field + '는 ' + obj[field]);
+
+            console.log(`id는 ${obj.id}, name은 ${obj['name']}, point는 ${obj['point']}`);
+
+            var numAry = ['홍길동','김민수','박시현']; //반복문을 쓰기 위해서 배열을 씀
+        for(var i=0; i<numAry.length; i++){
+            console.log(i +1 +  '번째 요소 => ' + numAry[i]);
+        }
+        //확장된 for구문
+        //배열일 경우...
+        for(var val of numAry){ //for(String str : numAry) in java
+            console.log(val);
+        }
+
+        //object일 경우에도 field의 갯수만큼 반복됨
+        for( var field in obj){ //위에서 선언한 var obj를 빙빙 돌면서 필드의 개수만큼 가져오겠다는 뜻
+            // console.log(field);
+            // console.log(obj[field]);
+            console.log(`field: ${field}, val : ${obj[field]}`);
+        }
+        </script>
+</body>
+</html>
