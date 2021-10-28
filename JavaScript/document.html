@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/document.html</title>
+</head>
+
+<body>
+    <script>
+        var n1 = 20; //number
+        n1 = "20"; //string
+        n1 = true; //boolean형도 가능
+        n1 = null;
+        n1 = { //object
+            name: 'hong',
+            age: 20
+        }
+        var ary = [n1, 'apple', 20, true]; //type이 꼭 같은 타입이 아니어도 괜찮움
+        for (var val of ary) {
+            console.log(val);
+
+
+        }
+
+        window.document.write(n1); //document영역에 20이 출력되게 됨
+        window.document.write(n1.name);
+        document.write('<p>' + n1['age'] + '</p>'); //태그 값을 그대로 가지고 화면에 그려줌
+        console.log(n1); //전역변수 어디서든 쓰이는 변수
+
+        function sum() {
+            var n1 = 10; //local 변수 function안에서만 존재하다가 function이 끝나면 사라지는 변수
+            var n2 = 20;
+            console.log(n1 + n2);
+        }
+        sum(); {
+
+            let n2 = 'val'; //블럭으로 감싸더라도 var는 블럭 안에서만 사용되겠다는 규칙이 따로 없음.블럭영역의 의미x
+            var n1 = 'new'; //
+        }
+
+        {
+            let n2 = '20'; //변수 //위의 블럭 안에서 선언한 n2는 블럭이 사라지면 새로 변수선언해도 상관 없음 블록 단위로 변수가 선언,사용,사라지게 하는 것
+            n2 = 20;
+            n2 = true;
+
+            const n3 = 30; //상수 //값이 한번 할당되고 나면 다른 값으로 바꿀 수 없음
+            // n3= 40; 에러가 나게 됨...
+
+            const obj = {
+                name: 'hong',
+                age: 20
+            }
+            obj.name = 'hwang';
+            obj['age'] = 23;
+            console.log(obj);
+        }
+
+        function showInfo() {
+            console.log('hello hello');
+        }
+        console.log(showInfo());
+        console.log(showInfo); //function정의문(); 하나의 타입으로 정의 된 것
+        let newFunc = showInfo; //정의문을 또다른 변수에 담은 것 //자바스크립트가 데이터타입이할당되어있지않아서 가능
+        console.log(newFunc);
+        newFunc();
+
+        let showAnother = function () { //function을 정의하는데 이름이 없음
+            console.log('nice world');
+
+        }
+        console.log(showAnother); //정의구문이 그대로 출력됨
+        showAnother();-
+
+
+        
+
+    </script>
+
+
+</body>
+
+</html>
