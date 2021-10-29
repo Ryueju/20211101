@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/dom.html</title>
+</head>
+<body>
+    <p id="message">Hello, Sanrio Friends!</p>
+<ul id="sanrio">
+        <li>포챠코</li>
+        <li>쿠로미</li>
+        <li>시나모롤</li>
+    </ul>
+    
+    <script>
+
+        //document의 최상위부터 찾아와도 괜찮고, tag name, id값을 불러와도 됨
+        // console.log(document.body.childNodes[2]); //왜? p태그가 출력이 될까?
+        // //body와 p태그 사이에 공간이 있기 때문!
+        // document.body.childNodes[1].innerHTML = '안녕하세요. 산리오칭구들';
+
+        // document.body.childNodes[3].childNodes[1].innerHTML = 'POCHAKO';
+
+        let val = document.getElementById('message');
+        val.textContent = '산리오';
+
+        let ul = document.getElementById('sanrio')
+        console.log(ul.childNodes); //element만 가져올 경우는 ul.children
+        console.log(ul.children[0].textContent);
+        console.log(val);
+        //id속성이 있으면 아이디 값으로 받을 수 있음
+        </script>
+        </body>
+    </html>  

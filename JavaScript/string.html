@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/string.html</title>
+</head>
+<body>
+    <script>
+        // var str = 'hello, world'; //string vs object
+        // String h= new String("");
+        // str =  new String ('hello');
+        // console.log(typeof str);
+        // console.log(str.length); //문자열의 개수
+        // var strs = str.split(',');
+        // console.log(strs[0]); //hello world
+        // console.log(strs[1]); //h
+        // str[0] = 'T'; //값을 읽어오는 것은 가능하지만 배열처럼 보이기 때문에
+        // // console.log(str.slice(0,4));
+        //     // str.slice(0,4); //어느위치에서 어느위치의 값을 잘라내겟다. 0번째위치에서 4번째 위치를 잘라내겠다
+        // var result = str.slice(0,4);
+        // result = str.substring(0,5); //index값이 0부터 시작해서 0부터 시작해서 4번째까지라는 뜻
+        // result = str.substr(5,3); //5번째 위치부터 3개만 잘라서 출력해줄게  , w
+        // result = str.slice(-5,-1); 
+        // // console.log(result);
+
+        // let newStr = str.replace('hello','nice');
+        // newStr = str.toUpperCase(); //대문자로
+        // // newStr = str.toLowerCase(); //소문자로 
+        // console.log(newStr);
+
+
+
+        //2000이후는 주민번호...뒷자리 남3여4 
+        
+        
+        let mins = ['950101-1234567', '970202-2345678' , '0101233456789', '020202 4567890'];
+        
+        function checkGender(min){
+            let newMin = min.replace('-','').replace(' ','');
+            let gen = newMin.charAt(6);
+            // if(isNaN(gen) || gen == ''){
+            //     gen = min.charAt(7);
+            // }
+          if (gen % 2 ==1) {
+              return 'M';
+          } else {
+              return 'F';
+          }
+        }
+         let gen = checkGender(mins[0]);
+         console.log(gen);
+         checkGender(mins[1]);
+         checkGender(mins[2]);
+         checkGender(mins[3]);
+
+    </script>
+</body>
+</html>
