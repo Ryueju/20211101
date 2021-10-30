@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>exam01.html</title>
+        <style>
+            .head {
+                width: 1100px;
+                position: absolute;
+                height: 40px;
+                padding-top: 20px;
+                padding-left: 20px;
+                margin-left: 10px;
+                margin-top: 20px;
+                
+                /* background-color: rgb(247, 247, 89); */
+                border-top: 1px solid lightgrey;
+                border-bottom: 1px solid lightgrey;
+
+            }
+
+            .head > span {
+                /* background-color: lightpink; */
+                padding-top: 10px;
+                padding-bottom: 18px;
+                position: relative;
+                font-size: 15px;
+                text-align: center;
+                margin-right: 23px;
+                margin-left: 10px;
+                font-weight: bold;
+                color: rgb(90, 81, 81);
+                transition: width 1s;
+                
+
+            }
+            .head>span:hover{
+                border-bottom: 3px solid rgb(72, 161, 135);
+                color: rgb(72, 161, 135);
+                cursor: pointer;
+            }
+
+            .icon > span {
+                font-size: 9px;
+                float: right;
+            }
+
+            nav {
+                /* background-color: rgb(189, 185, 212); */
+                float: left;
+                width: 250px;
+                height: 500px;
+                margin-top: 100px;
+            }
+            section {
+                /* background-color: rgb(236, 225, 236); */
+                float: left;
+                width: 900px;
+                height: 600px;
+                margin-top: 120px;
+            }
+            /* .head > #check {
+                color: rgb(76, 168, 133);
+                font-weight: bold;
+            } */
+
+            ul>h4{
+                color: rgb(123, 126, 126);
+                font-size: 25px;
+                padding-right: 30px; 
+            }
+            ul>li{
+                padding: 14px;
+                width: 150px;
+                font-size: 14px;
+                font-weight: bold;
+                
+            }
+            ul>#line {
+                border-bottom: 1px solid lightgrey;
+                
+            }
+            ul>#fline{
+                border-top: 1px solid grey;
+                border-bottom:1px solid lightgrey;
+            }
+            .mini{
+                /* float:right; */
+                position: fixed;
+                margin-top: 100px;
+               margin-left: 940px;
+                color: grey;
+                font-weight: bold;
+                font-size: 13px;
+
+            }
+
+            .page{
+                /* background-color: yellow; */
+                padding-top: 30px;
+                padding-left: 40px;
+                font-size: 14px;
+                margin-top:25px;
+                border-top: 3px solid grey;
+                
+                border-radius: 2px;
+                font-weight: bold;
+                color: grey;
+            }
+            #no{
+                color: orangered;
+                font-weight: bold;
+                font-size: 15px;
+            }
+            #select,#text,#button{
+                float: right;
+            }
+            #pagelist{
+                padding-bottom: 28px;
+                padding-left: 5px;
+                /* background-color: pink; */
+                height: 7px;
+                color: rgb(61, 61, 61);
+                font-size: 14px;
+                padding-top: 15px;
+                
+                font-weight: bold;
+                border-bottom:2px solid rgb(172, 172, 172);
+            }
+           
+           .board>li{
+               width: 70px;
+               border-top: 2px solid rgb(175, 175, 175);
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+               
+           }
+           .board1>li{
+            width: 70px;
+            font-size: 12px;
+               border-top: 1px solid lightgrey;
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+                font-weight: bold;
+
+           }
+           .board2>li{
+            width: 70px;
+            font-size: 12px;
+            border-top: 1px solid rgb(238, 238, 238);
+                
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+                font-weight: bold;
+
+           }
+           .board3>li{
+            width: 70px;
+            font-size: 12px;
+            
+            border-top: 1px solid rgb(238, 238, 238);
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+                font-weight: bold;
+
+
+           }
+           .board4>li{
+            width: 70px;
+            font-size: 12px;
+            border-top: 1px solid rgb(238, 238, 238);
+                
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+                font-weight: bold;
+
+
+           }
+           .board5>li{
+            width: 70px;
+            font-size: 12px;
+            border-top: 1px solid rgb(238, 238, 238);
+               
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+                font-weight: bold;
+
+
+           }
+           .board6>li{
+            width: 70px;
+            font-size: 12px;
+            border-top: 1px solid rgb(238, 238, 238);
+               
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+                color: grey;
+
+
+           }
+           .board7>li{
+            width: 70px;
+            font-size: 12px;
+            border-top: 1px solid rgb(238, 238, 238);
+            border-bottom: 1px solid rgb(238, 238, 238);
+                float: left;
+                padding-right: 8px;
+                text-align: center;
+                color: grey;
+
+
+           }
+           nav>ul>li:hover{
+                background-color:  rgb(72, 161, 135);
+                color: rgb(247, 245, 245);
+                cursor: pointer;
+                
+            }
+            div>ul>#boardsubject:hover{
+               text-decoration-line: underline;
+               cursor: pointer;
+               transition-timing-function: ease;
+            }
+        </style>
+        <body>
+            <head class="head">
+                <div class="head menu">
+                    <span>감염병</span>
+                    <span>건강정보</span>
+                    <span>정책정보</span>
+                    <span>연구개발</span>
+                    <span id="check">알림·자료</span>
+                    <span>간행물·통계</span>
+                    <span>민원·정보공개</span>
+                    <span>기관소개</span>
+                    <span>사업별 누리집</span>
+                    <!-- <hr id="headline" size=1" align="left" width="100%" noshade="noshade"
+                    ></hr> -->
+                </div>
+                <!-- <div class="icon"> <span>공지사항</span> <span>></span> <span>알림·자료</span>
+                <span>></span> <span>집</span> <!-- <hr size="2" align="left" width="100%"
+                noshade="noshade" ></hr> -->
+
+            </div>
+            </head>
+
+            <div class="mini">
+                <!-- <img id="minihome" src="minihome.png"> -->
+                <span>HOME</span>
+                <span> > </span>
+                <span>알림·자료</span>
+                <span> > </span>
+                <span style="color: rgb(72, 161, 135);"> 공지사항 </span>
+            </div>
+
+        <nav>
+            <ul style="list-style-type: none;">
+                <h4>알림·자료</h4>
+                <li id="fline"">이달의건강소식</li>
+                <li id="line">보도자료</li>
+                <li id="line">포토뉴스</li>
+                <li id="line">홍보자료</li>
+                <li id="line">공지사항</li>
+                <li id="line">공고/공시</li>
+                <li id="line">채용공고</li>
+                <li style="border-bottom: 1px solid grey;">법령·지침·서식</li>
+        </ul>
+    </nav>
+    <section>
+        <div>
+            <p></p>
+            <span style=" font-size: 30px; color:grey; font-weight: bold;" class="title">&nbsp;공지사항</span>
+            <img style="padding-right:20px; width: 45px; float: right" src="print.png">
+            <img style=" width: 45px; float: right;"  src="upload.png">
+            
+        </div>
+
+        <div class="page">
+            <span>
+                
+                <button style="color:grey ; padding:10.5px;border:1px solid rgb(209, 209, 209); background-color: rgb(255, 255, 255);" id="button">🔍</button>
+                <input style="padding-top: 12px; border:1px solid rgb(209, 209, 209); padding-bottom: 12px;" id="text" type="text" name="text" value="&nbsp;검색어를 입력하세요">
+                <select style="padding-top: 12px; padding-bottom: 11px; border:1px solid rgb(209, 209, 209);" id="select" name="select">
+                    <option value="1" selected>제목</option>
+                    <option value="2"> 글 내용</option>
+                    <option value="3"> 글쓴이</option>
+                    
+                </select>
+            </span>
+          
+        </div>
+        <div id="pagelist">
+            <span>전체 2,114건, 현재 페이지</span>
+           <span id="no">1</span>
+            <span> /212</span>
+         </div>
+
+         <div >
+            
+            <ul class="board" style="list-style-type: none; " >
+                <li style="width: 28px;">번호</li>
+                <li id="boardsubject1" style="width: 390px;">제목</li>
+                <li style="width: 180px;">작성자</li>
+                <li style="width: 71px;">작성일자</li>
+                <li style="width: 58px;" >조회수</li>
+            </ul>
+
+            <ul class="board1" style="list-style-type: none;">
+                <li style="width: 28px;">공지</li>
+                <li id="boardsubject" style="text-align: left; width: 390px;">211022 국내 예방접종완료자 입국 시 격리면제 절차 안내</li>
+                <li style="width: 180px;">질병관리청 검역정책과</li>
+                <li style="width: 71px;">2021-10-22</li>
+                <li style="width: 58px;">10019</li>
+            </ul>
+
+            <ul class="board2" style="list-style-type: none;">
+                <li style="width: 28px;">공지</li>
+                <li id="boardsubject" style="text-align: left; width: 390px;">211021 예방접종완료자 격리면제 제외국가 안내(11월)</li>
+                <li style="width: 180px;">질병관리청 검역정책과</li>
+                <li style="width: 71px;">2021-10-21</li>
+                <li style="width: 58px;">11014</li>
+            </ul>
+            <ul class="board3" style="list-style-type: none;">
+                <li style="width: 28px;">공지</li>
+                <li id="boardsubject" style="text-align: left; width: 390px;">211028 해외입국자 방역관리 흐름도 변경 안내</li>
+                <li style="width: 180px;">질병관리청 검역정책과</li>
+                <li style="width: 71px;">2021-10-20</li>
+                <li style="width: 58px;">7935</li>
+            </ul>
+            <ul class="board4" style="list-style-type: none;">
+                <li style="width: 28px;">공지</li>
+                <li id="boardsubject" style=" text-align: left; width: 390px;">(210923)해외입국자 PCR음성확인서 제출 및 적합기준 안내</li>
+                <li style="width: 180px;">질병관리청 검역정책과</li>
+                <li style="width: 71px;">2021-09-23</li>
+                <li style="width: 58px;">26505</li>
+            </ul>
+            <ul class="board5" style="list-style-type: none;">
+                <li style="width: 28px;">공지</li>
+                <li id="boardsubject" style=" text-align: left; width: 390px;">210923 남아공, 탄자니아 발 입국자 방역절차 변경 안내</li>
+                <li style="width: 180px;">질병관리청 검역정책과</li>
+                <li style="width: 71px;">2021-10-01</li>
+                <li style="width: 58px;">3696</li>
+            </ul>
+            <ul class="board6" style="list-style-type: none;">
+                <li style="width: 28px;">2114</li>
+                <li id="boardsubject" style="text-align: left; width: 390px;">212024 해외입국자 입국 시 방역절차 흐름도 변경(공항...)</li>
+                <li style="width: 180px;">질병관리청 검역정책과</li>
+                <li style="width: 71px;">2021-09-17</li>
+                <li style="width: 58px;">22,766</li>
+            </ul>
+            <ul class="board7" style="list-style-type: none;">
+                <li style="width: 28px;">2113</li>
+                <li id="boardsubject" style=" text-align: left;width: 390px;">코로나19 항체검사 관련 Q&A</li>
+                <li style="width: 180px;">중앙방역대책본부 진단총괄팀</li>
+                <li style="width: 71px;">2021-09-17</li>
+                <li style="width: 58px;">4,380</li>
+            </ul>
+        </div>
+    </section>
+</body>
+</head>
+</html>
