@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function calc(jumin1, jumin2)
+	{
+	　　var ssn1, ssn2;
+	　　var nByear, nTyear;
+	　　var today;
+		
+	　　ssn1 = jumin1;
+	　　ssn2 = jumin2;
+
+	　　today = new Date();
+	　　nTyear = today.getFullYear();
+	 
+	　　if (parseInt(ssn2.substring(0,1), 10) < 3){
+	　　　　nByear = 1900 + parseInt(ssn1.substring(0,2), 10);
+
+	　　}else{
+	　　　　nByear = 2000 + parseInt(ssn1.substring(0,2), 10);
+
+	   }
+	　　nAge = nTyear - nByear;
+
+  nSex = parseInt(ssn2.substring(0,1), 10);
+
+　　if(nSex % 2 == 1)
+　　　　Sex = "m";
+　　else
+　　　　Sex ="w";
+	}
+
+
+</script>
+</body>
+
+</html>

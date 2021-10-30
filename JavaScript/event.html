@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/event.html</title>
+</head>
+<body>
+    <button >클릭</button>
+    <p>클릭</p>
+        <script>
+            //btn이라는 변수에 담아서 
+            let btn = document.querySelector('button') //quarySlector(선택자) document안의 요소들을 선택하겠다
+           btn = document.getElementById('btn'); //값을 찾아야 하므로 btn값을 넣..?
+            console.log(btn); //버튼에
+            btn.onclick = function(){ //어느영역이든 클릭을 하면 '클릭됨'을 호출함
+            //
+                // window.alert('클릭됨.');
+                //p태그의 요소를 영어로 바꾸고 싶다면
+                let pTag = document.querySelector('p'); //p 태그를 찾아옴
+                pTag.innerHTML = 'click me !'; //innerHTML속성 //위에 클릭버튼을 누르면 p태그 안의 한글 클릭이 영어로 바뀌게 됨
+
+            }
+            btn.onmouseover = function(){
+                //event를 가리키는 속성 onmouseover
+                this.style.backgroundColor ='yellow';
+            }
+            btn.onmouseout = function(){
+                this.style.backgroundColor = null; //마우스를 떼면 초기값을 돌려줌
+            }
+        </script>
+</body>
+</html>
