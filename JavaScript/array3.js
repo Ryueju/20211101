@@ -35,6 +35,58 @@ const filterUsers = newUsers.filter(function(val, ind){
 console.clear();
 console.log(filterUsers);
 
+
+let sum= filterUsers.reduce(function(initVal, obj, ind, ary) {
+    //reduce라는 메소드가 정해놓은 순서
+    // console.log(initVal, obj, ind); //(배열, { 어쩌구 ~},0,1,2,)
+    // // return initVal + obj.score; // },0); 로 설정하고 출력하기
+    // // return obj;
+    // initVal.push(obj)
+    // return initVal; //배열에 obj값을 계속 담겠다
+// });
+    // if(ind !=0){
+    //     console.log(initVal[ind -1]);
+    // } 
+    console.log(initVal, obj, ind);
+    initVal.push(obj)
+    return initVal;
+}, []); //배열이 초기값이 됨  //참조값이 배열 위치에 들어감 a=3 a에는 number타입의 값이 들어가야 함
+//a = {}
+console.log(sum);
+
+let sum2 =  function sum2(num1, num2){
+    return num1 + num2;
+}
+
+sum2 = (num1, num2) => {
+    return num1+num2;
+}
+// =
+sum2 = (num1, num2) => num1+num2; //간단표현식
+let trueOrFalse =  [ 45, 4, 9, 16, 25].every(function (val,ind, ary){
+    return val > 10;
+})
+console.log(trueOrFalse); //false
+// const fruits = ['Apple', 'Orange', 'Apple', 'Mango'];
+// fruits.indexOf('Apple');
+
+// const fruits = ['Apple', 'Orange', 'Apple', 'Mango'];
+// console.log(fruits.lastindexOf('Apple'));
+const fruits = ['Apple', 'Orange', 'Apple', 'Mango'];
+// console.log(fruits.includes('Apple')); //true
+console.log(fruits.find(function(val, ind, ary){
+    return val == 'Apple';  //Apple이라는 val이 있으면 리턴해주세욧
+}));
+
+ console.log(Array.from('ABCD'));
+ console.log('A,B,C,D'.split(","));
+ console.log(fruits.keys());
+ for(let x of fruits.keys()){
+     console.log(x);
+ }
+ let user1 = new User('user1', '사용자1', 90);
+ console.log(user1.keys())
+ 
 //reduce는 생략!
 // let resultAry = [];
 // let sum = filterUsers.reduce(function(prevObj, curObj, ind, ary){ //sum : 초기값의 역할을 함

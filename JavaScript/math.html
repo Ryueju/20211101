@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/math.html</title>
+</head>
+
+<body>
+    <script>
+        let num = -3.2;
+        // let result  = Math.round(num);
+        // let result  = Math.ceil(num); //3 ~4 ; 무조건 올림하겟다
+        // let result  = Math.floor(num);
+        let result = Math.sign(num);
+        result = Math.pow(3, 3);
+        result = Math.sqrt(64);
+        result = Math.abs(-94);
+        result = Math.random(); //0~1: 임의의 값
+
+        let randAry = [];
+        for (let i = 0; i < 10; i++) {
+            result = Math.floor(Math.random() * 6); //0 ~ 6 사이에 있는 임의의 난수를 만들겠다..
+            console.log(result);
+            randAry.push(result);
+        }
+        console.log(randAry);
+
+        
+
+        
+        let notDupAry = [];
+
+          for (i = 0; i<6; i++) {
+               ranNum = Math.floor(Math.random() * 10)
+                if (notDupAry.indexOf(ranNum) === -1) {
+                    notDupAry.push(ranNum)
+                } else {
+                    i--
+                }
+            }
+            console.log(notDupAry);
+        
+
+      
+    </script>
+</body>
+
+</html>
