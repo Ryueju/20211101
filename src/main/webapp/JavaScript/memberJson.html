@@ -6,6 +6,7 @@
 	<title>javaScript/memberJson.html</title>
 </head>
 <style>
+
 	* {
 		box-sizing: border-box;
 	}
@@ -64,37 +65,84 @@
 		let xhtp = new XMLHttpRequest();
 		xhtp.onreadystatechange = function () {
 			if (xhtp.readyState == 4 && xhtp.status == 200) {
-					
 				let data = JSON.parse(xhtp.responseText);
 				console.log(data); //"OK"를 넘겨받겠다..
 				showMemberList(data);
+			}
+		}
+		xhtp.open('get','../GetNumberJsonServ');
+		xhtp.send();
+				const titles = ['userId', 'userName','address','birthDate','phone','address','gender'];
+
+				function createPage(jsonData){
+					let div,span,table,tbody,tr,td,button;
+					div = document.createElement('div');
+					span = document.createElement('span');
+					span.innerHTML = "회원리스트";
+					document.getElementById("show").appendChild(div);
+					div.appendChild(span);
+					table=document.createElement('table');
+					table.setAttribute('border','1');
+					document.getElementById("show").appendChild(table);
+					thead = document.createElement('thead');
+					table.appendChild(thead);
+
+					let th = ['userId','userName','gender','birthDate','DELETE'];
+					tr=document.createElement('tr');
+					thead.appendChild(td);
+					for(let title of th);
+					td.innerHTML(td);
+
 				
-				const titles = ['userId', 'userName','address'];
+				tbody = document.createElement('tbody');
+				table.appendChild(tbody);
+				for(let row of jsonData){
+					tr=document.createElement('tr');
+					for(let field of th){
+						td=document.createElement('td');
 
-				function createPage(){
-					
-					let table,th,tbody,tr,td;
-					th = document.createElement('th');
-					tr = document.createElement('tr');
-					th.appendChild(th);
-					for (let title of thead) {
-						td = document.createElement('td');
-						td.innerHTML = title;
+					}
+					if(row[field] != undefined){
+						
+						console.log(field);
+						if(field =='userId'){
+							td.innerHTML = row[field];
+							td.onclick = function(){
+								getUserInfo(row[field]);
+							}
+						}else{
+							td.innerHTML = row[field];
+						}
+						console.log(row[field]);
+					}else{
+						td.innerHTML = '';
+
 						tr.appendChild(td);
 					}
-					tbody = document.createElement('tbody');
+				}
 					
-					for (let row of data) {
-						tbody.appendChild(getRow(row));
-					}
+						button = document.createElement('button');
+						button.textContent="삭제";
+						td.appendChild(button);
 					
-					tr = document.createElement('tr');
-					for (let title of titles) {
-
-						td = document.createElement('td');
-						td.textContent = row[title];
-						tr.appendChild(td);
+						tbody.appendChild(tr);
+						console.log(row);
 					}
+				
+		
+				function getUserInfo(id) {
+					let xhtp = new XMLHttpRequest();
+					xhtp.onreadystatechange = function () {
+						if (xhtp.readyState == 4 && xhtp.status == 200) {
+							let data = JSON.parse(xhtp.responseText);
+							console.log(data);
+							 getHeader();
+								getContent(data);
+								 getRow(row); 
+						}
+					}
+					xhtp.open('get', '../GetMemberOneJsonServ?id=' + id);
+					xhtp.send();
 				}
 				 
 				function showMemberList(data) {
@@ -117,20 +165,6 @@
 
 
 
-				function getUserInfo(id) {
-					let xhtp = new XMLHttpRequest();
-					xhtp.onreadystatechange = function () {
-						if (xhtp.readyState == 4 && xhtp.status == 200) {
-							let data = JSON.parse(xhtp.responseText);
-							console.log(data);
-							 getHeader();
-								getContent(data);
-								 getRow(row); 
-						}
-					}
-					xhtp.open('get', '../GetMemberOneJsonServ?id=' + id);
-					xhtp.send();
-				}
 				
 			//	const titles = ['userId', 'userName','address'];
 
@@ -142,7 +176,7 @@
 							contentElm.children[0].remove();
 						}
 					 for(let title of titles){
-						 let rowDiv = docsument.createElement('div');
+						 let rowDiv = document.createElement('div');
 						 rowDiv.className = 'row';
 						 
 						 let titleDiv = document.createElement('div');
@@ -162,8 +196,8 @@
 				}
 				
 				getUserInfo('user1');
-			}
-		}
+			
+		
 	</script>
 </body>
 
