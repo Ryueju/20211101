@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>javascript/xml.html</title>
+</head>
+
+<body>
+	<div id="show"></div>
+	<script>
+		//Ajax => XMLHttpRquest();
+		let xhtp = new XMLHttpRequest();
+		xhtp.onreadystatechange = function () {
+			if (xhtp.readyState == 4 && xhtp.status == 200) {
+				console.log(xhtp.responseXML);
+				let xmlDoc = xhtp.responseXML;
+				/* 			createPage(records); */
+				/* let records = xmlDoc.getElementsByTagName('record');
+				console.log(records[0].children[0].textContent); */
+				//가지고 온 첫번째의 자식의 컨텐트를 보여줘 
+				createPage(xmlDoc); //xmlDoc불러오기
+			}
+		}
+		xhtp.open('get', '../GetMemberServlet'); //servlet이름과똑같이
+		xhtp.send();
+
+		//페이지 작성하는 함수
+		function createPage(xmlData) {
+			let table, tbody, tr, td;
+			table = document.createElement('table');
+			table.setAttribute('border', '1');
+			tbody = document.createElement('tbody');
+			table.appendChild(tbody);
+
+			//data
+			let rows = xmlData.getElementsByTagName('row'); //row라는 태그를 주욱 가져올게요 
+			//console.log(rows[2].children[3].textContent);
+			console.log(rows);
+			rows[0].children[0].innerText; //id값
+			rows[0].children[1].innerText; //name
+			rows[0].children[2].innerText; //birth
+			rows[0].children[3].innerText; //gender
+
+			//데이터를 한 건 한 건 만들어줌 tr생성
+			for (let i = 0; i < rows.length; i++) {
+				tr = document.createElement('tr');
+				//td를 반복 생성해주기 위해서.
+				for (let j = 0; j < 4; j++) {
+					td = document.createElement('td');
+					td.innerText = rows[i].children[j].textContent;
+					tr.appendChild(td);
+				}
+				tbody.appendChild(tr); //한건 만든 데이터를 tbody에 붙여줌
+			}
+			//최종적으로 어디붙여주나
+			document.getElementById('show').appendChild(table);
+
+			/* for(){
+				
+			}
+			 */
+
+		}
+	</script>
+</body>
+
+</html>

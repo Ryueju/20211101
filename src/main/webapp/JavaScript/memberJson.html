@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>javaScript/memberJson.html</title>
+</head>
+<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	#show {
+		display: inline-block;
+		width: 56vw;
+		padding-right: 2vw;
+		border: 1px solid blue;
+	}
+
+	#content {
+		display: inline-block;
+		width: 40vw;
+		height: 200px;
+		border: 1px solid red;
+	}
+	
+	.row{
+		border: 1px solid blue;
+		
+	}
+	.row>.title{
+		display:inline-block;
+		width:10vw;
+		background-color:aqua;
+		
+		
+	}
+	.row>.content{
+		display:inline-block;
+		width:25vw;
+		background-color:yellow;
+	}
+	
+</style>
+
+<body>
+	<div id="show"></div>
+	<div id="content">
+		<div class="row">
+			<div class="title">id</div>
+			<div class="content">user1</div>
+		</div>
+		<div class="row">
+			<div class="title">name</div>
+			<div class="content">포차코</div>
+		</div>
+		<div class="row">
+			<div class="title">address</div>
+			<div class="content">daegu11</div>
+		</div>
+	</div>
+	<script>
+		//Ajax => XMLHttpRquest();
+		let xhtp = new XMLHttpRequest();
+		xhtp.onreadystatechange = function () {
+			if (xhtp.readyState == 4 && xhtp.status == 200) {
+					
+				let data = JSON.parse(xhtp.responseText);
+				console.log(data); //"OK"를 넘겨받겠다..
+				showMemberList(data);
+				
+				const titles = ['userId', 'userName','address'];
+
+				function createPage(){
+					
+					let table,th,tbody,tr,td;
+					th = document.createElement('th');
+					tr = document.createElement('tr');
+					th.appendChild(th);
+					for (let title of thead) {
+						td = document.createElement('td');
+						td.innerHTML = title;
+						tr.appendChild(td);
+					}
+					tbody = document.createElement('tbody');
+					
+					for (let row of data) {
+						tbody.appendChild(getRow(row));
+					}
+					
+					tr = document.createElement('tr');
+					for (let title of titles) {
+
+						td = document.createElement('td');
+						td.textContent = row[title];
+						tr.appendChild(td);
+					}
+				}
+				 
+				function showMemberList(data) {
+
+					// let table,thead, tbody,tr,td;
+					let table = document.createElement('table');
+					table.setAttribute('border', '1');
+					// thead.appendChild(getContent(data));
+
+					table.appendChild(getTitle());
+
+					table.appendChild(getHeader());
+					tbody.appendChild(getContent(data));
+					document.getElementById('show').appendChild(table);
+					// table.appendChild(tbody);
+				}
+				let h3 = document.createElement('h3');
+				document.getElementById('show').appendChild(h3);
+				console.log(document.getElementById('show'));
+
+
+
+				function getUserInfo(id) {
+					let xhtp = new XMLHttpRequest();
+					xhtp.onreadystatechange = function () {
+						if (xhtp.readyState == 4 && xhtp.status == 200) {
+							let data = JSON.parse(xhtp.responseText);
+							console.log(data);
+							 getHeader();
+								getContent(data);
+								 getRow(row); 
+						}
+					}
+					xhtp.open('get', '../GetMemberOneJsonServ?id=' + id);
+					xhtp.send();
+				}
+				
+			//	const titles = ['userId', 'userName','address'];
+
+				function showDetail(row){ //row하나가 넘어온다는 뜻..
+					//원래 요소가 있으면 요소를 지워주세요.
+					let contentElm = document.querySelector('#content');
+					let cnt = contentElm.children.length;		
+						for(let i = 0; i<contentElm.children.length; i++){
+							contentElm.children[0].remove();
+						}
+					 for(let title of titles){
+						 let rowDiv = docsument.createElement('div');
+						 rowDiv.className = 'row';
+						 
+						 let titleDiv = document.createElement('div');
+						 let contentDiv = document.createElement('div');
+						 rowDiv.append(titleDiv,contentDiv);
+						 
+						 titleDiv.className = 'title'; 
+						 titleDiv.textContent = title;
+						 
+						 contentDiv.className = 'content';
+						 contentDiv.textContent = title[field];
+						 
+						 document.getElementById('content').appendChild(rowDiv);
+						 
+					 }
+					
+				}
+				
+				getUserInfo('user1');
+			}
+		}
+	</script>
+</body>
+
+</html>
