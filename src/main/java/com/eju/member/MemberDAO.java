@@ -34,7 +34,8 @@ public class MemberDAO {
 		}
 	
 	public boolean insertMember(String id, String pw, String birth, String gender) {
-		String sql = "insert into member(user_id,user_pw,birth_date,gender) values(?,?,?,?)";
+		String sql = "insert into member (user_id,user_pw,birth_date,gender) values(?,?,?,?)";
+		
 	try {
 		PreparedStatement psmt = conn.prepareStatement(sql);
 		psmt.setString(1, id);

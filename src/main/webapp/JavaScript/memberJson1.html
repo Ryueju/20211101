@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>javascript/memberJson.html</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		#show {
+			float: left;
+			/* display: inline-block; */
+			width: 590px;
+			padding-right: 2vw;
+			border: 1px dotted rgb(59, 59, 94);
+		}
+
+		#content {
+			/* display: inline-block; */
+			float: left;
+			width: 400px;
+			height: 305px;
+			/* border: 1px solid rgb(170, 97, 97); */
+		}
+
+		.row {
+			border: 1px solid rgb(67, 67, 99);
+		}
+		#addRow{
+			/* border: 1px solid blue; */
+			height:210px;
+			width:590px;
+		}
+		#addRow > .control {
+			float:left;
+			width:450px;
+			border:1px solid rgb(114, 114, 114);
+			height:210px;
+		
+		}
+		#addRow > .btn{
+		float:left;
+			width:130px;
+			border:1px solid rgb(114, 114, 114);
+			height:210px;
+		}
+		
+
+		.row>.title {
+			display: inline-block;
+			width: 10vw;
+			background-color: rgb(195, 230, 166);
+		}
+
+		.row>.content {
+			display: inline-block;
+			width: 25vw;
+			background-color: rgb(170, 211, 190);
+		}
+		h3{
+			text-align: center;
+		}
+
+		label{
+			background-color: aliceblue;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="addRow">
+		<div class = "control">
+				<label for="user_id">ID : </label>
+				<input id="user_id" type = "text" value="user9">
+				
+				<label for="user_name">NAME : </label>
+				<input id="user_name" type = "text" value="kuromi">
+				
+				<label for="user_birth">BIRTH : </label>
+				<input id="user_birth" type = "date" value="2015-05-12">
+				
+				<label for="user_phone">PHONE : </label>
+				<input id="user_phone" type = "text" value="010-5555-9999">
+				
+				<label for="user_addr">ADDR : </label>
+				<input id="user_addr"  type = "text" value="seoul gangnam 55-88">
+				
+				<label for="user_male">M : </label>
+				<input name="gender" id="user_male" type = "radio" value="male">
+				
+				<label for="user_female">F : </label>
+				<input name="gender" id="user_female" type = "radio" checked value="female">
+		
+		</div> 
+		<div class = "btn">
+			<button onclick = "addMember()">등록</button>
+			<button onclick = "modMember()">수정</button>
+			<button onclick = "delMember()">삭제</button>
+		
+		
+		</div>
+	</div>
+	<div id="show"></div>
+	<div id="content">
+		<div class='row'>
+			<div class='title'>id</div>
+			<div class='content'>user1</div>
+		</div>
+		<div class='row'>
+			<div class='title'>name</div>
+			<div class='content'>홍길동</div>
+		</div>
+		<div class='row'>
+			<div class='title'>생일</div>
+			<div class='content'>1995-03-05</div>
+		</div>
+	</div>
+	<script>
+		// 1) 화면 초기화 보여줄 리스트 출력.
+		// Ajax => new XMLHttpRequest();
+		let xhtp = new XMLHttpRequest();
+		xhtp.onreadystatechange = function () {
+			if (xhtp.readyState == 4 && xhtp.status == 200) {
+				// 회원 리스트 화면에 보여주기.
+				let data = JSON.parse(xhtp.responseText);
+				showMemberList(data)
+			}
+		}
+		xhtp.open('get', '../GetMemberJsonServ');
+		xhtp.send();
+
+		// 타이틀 * MemberVO의 필드값과 동일.
+		const titles = ['userId', 'userName', 'birthDate', 'phone', 'address', 'gender'];
+
+		// 2) 헤더정보
+		function getHeader() {
+			let thead = document.createElement('thead');
+			let tr = document.createElement('tr');
+			thead.appendChild(tr);
+			for (let title of titles) {
+				let td = document.createElement('th');
+				td.textContent = title;
+				tr.appendChild(td);
+			}
+			// 추가 칼럼. X
+			let td = document.createElement('th');
+			td.textContent = '삭제';
+			tr.appendChild(td);
+			return thead;
+		}
+
+		// 3) 데이터 정보.
+		function getContent(data) {
+			let tbody = document.createElement('tbody');
+			for (let row of data) {
+				tbody.appendChild(getRow(row));
+			}
+			return tbody;
+		}
+
+		// 4) 한건씩 처리. //전체적인 기능이 들어간 곳!!!!!!! 중요!!
+		function getRow(row) { // {userId:?, userName:?, address:?}
+			let tr = document.createElement('tr');
+			tr.id = row.userId; // tr태그를 유니크 하게 id값으로 불러오려고
+			for (let title of titles) {
+				let td = document.createElement('td');
+				//userId눌렀을때 getUserInfo실행하자(상세정보가져오기)
+				if(title =='userId'){ 
+					td.onclick = function(){
+						getUserInfo(row['userId']); //Userid: row에 데이터가 들어잇음
+					}
+				} else if(title == 'userName'){
+					td.onclick = function(){
+						setUserInfo(row['userId']);
+					}
+				}
+				
+				let content = row[title];
+				if (title == 'birthDate' && content !== undefined) {
+					content = content.substring(0, 10);
+				}
+				td.textContent = content;
+				tr.appendChild(td);
+			}
+			
+			// 추가 칼럼.
+			let td = document.createElement('td');
+			td.innerHTML = `<button onclick="delMem('${row.userId}')">삭제</button>`;
+			tr.appendChild(td);
+			return tr;
+		}
+
+		// 5) ajax 호출 후 실행될 콜백함수.
+		function showMemberList(data) {
+			let table = document.createElement('table');
+			table.setAttribute('border', '1')
+			table.appendChild(getHeader());
+			table.appendChild(getContent(data));
+
+			let h3 = document.createElement('h3');
+			h3.appendChild(document.createTextNode('MEMBER LIST'))
+			document.getElementById('show').appendChild(h3);
+			document.getElementById('show').appendChild(table);
+		}
+
+		// 6) 이벤트 발생 시 실행할 함수.
+		function getUserInfo(id) {
+			let xhtp = new XMLHttpRequest();
+			xhtp.onreadystatechange = function () {
+				if (xhtp.readyState == 4 && xhtp.status == 200) {
+					let data = JSON.parse(xhtp.responseText);
+					console.log(data);
+					showDetail(data);
+				}
+			}
+			xhtp.open('get', '../GetMemberOneJsonServ?id=' + id);
+			xhtp.send();
+		}
+
+		// 7) 상세 화면.
+		function showDetail(row) {
+			// 원래 요소가 있으면 요소를 지워주세요.
+			let contentElm = document.querySelector('#content');
+			let cnt = contentElm.children.length;
+			for (let i = 0; i < cnt; i++) {
+				contentElm.children[0].remove();
+			}
+			// 상세화면을 생성해주는 부분.
+			for (let title of titles) {
+				let rowDiv = document.createElement('div');
+				rowDiv.className = 'row';
+
+				let titleDiv = document.createElement('div');
+				let contentDiv = document.createElement('div');
+				rowDiv.append(titleDiv, contentDiv);
+
+				titleDiv.className = 'title';
+				titleDiv.textContent = title;
+
+				contentDiv.className = 'content';
+				contentDiv.textContent = row[title];
+
+				document.getElementById('content').appendChild(rowDiv);
+			}
+		}
+		getUserInfo('user1');
+		
+		
+		//추가 function 등록버튼을 누르면 실행할 함수
+		//값들을 읽어와서 ajax호출할 때 값을 넘겨줘야 함
+		
+		
+		//8.멤버추가
+		function addMember(){
+			//입력화면의 값을 변수에 담아주기..
+			let id = document.getElementById('user_id').value;
+			let name = document.getElementById('user_name').value;
+			let birth = document.getElementById('user_birth').value;
+			let phone = document.getElementById('user_phone').value;
+			let addr = document.getElementById('user_addr').value;
+			let gen = document.querySelector('input[name="gender"]:checked').value; 
+											//input태그에 name속성중에 gender :중에 checked
+			let param = `i=${id}&n=${name}&b=${birth}&a=${addr}&p=${phone}&g=${gen}`; //중요..!! //XMLHttpRequest <에넘어갈 파라메터 이름
+							//id = let id //let = name				
+			//ajax 호출하자
+			let xhtp = new XMLHttpRequest();
+			xhtp.open('post','../GetMemberJsonServ') //등록하는 서블릿 필용
+			xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			//post방식으로 보낼때는 head정보를 알려줘야함
+			xhtp.send(param);
+			
+			//입력 후 처리
+			xhtp.onload = function(){
+			 console.log(xhtp.responseText);
+			 let result = JSON.parse(xhtp.responseText);
+			 
+					console.log(result);
+				if( result.retCode=="OK") {
+					window.alert(`id: ${result.userId} 를 등록 성공했습니다.!!`);
+				//console.log(result.uid,result.uname);
+					let tbody = document.querySelector('table>tbody');
+					tbody.appendChild(getRow(result));
+				}else{
+					//window.alert(result.retMsg);
+					window.alert(result.retMsg);
+				}		
+				//페이지가 다 로딩되면 가져와서 실행하는
+				//if필요없이 바로 넣어줘도 됨..
+				//console.log(xhtp.responseText);
+				/* 	if(result.retCode == "OK"){
+						console.log(result.retVal); //{userId:?, userName:?}
+					}else {
+						window.alert(result.retVal);
+					} */
+				
+			}
+
+
+		}
+		
+		
+		//9.멤버삭제
+		function delMem(id){ //id가들어오는 부분
+			console.log(id);
+			//id를 가지고 db처리해주는 서블릿.
+			//정상처리 후 화면에서도 삭제.
+			let xhtp = new XMLHttpRequest();
+			xhtp.open('get','../ModifyMemberServlet?id=' +id);
+			xhtp.send();
+			xhtp.onload = delMemCallBack;
+		}
+		
+		//10.삭제 후에 콜백
+		function delMemCallBack(){
+			console.log(this.responseText);
+			let result = JSON.parse(this.responseText);
+			if(result.retCode =="OK"){
+				window.alert(`id: ${result.userId} 를 삭제 완료했습니다!`);
+				document.getElementById(result.userId).remove();//tr하나가 지워짐
+			}else if(result.retCode =="NG"){
+				window.alert(`에러..: ${result.retMsg}`);
+			}else {
+				console.log('llllll');
+			}
+		}
+		
+		//11.화면 수정
+		function setUserInfo(id) {
+			let xhtp = new XMLHttpRequest();
+			xhtp.onload = setDetailCallBack;
+			xhtp.open('get', '../GetMemberOneJsonServ?id=' + id);
+			xhtp.send();
+		}
+		
+		//12.화면 수정 콜백
+		function setDetailCallBack() { //callback함수
+			let result = JSON.parse(this.responseText); //{userId:?, userName:?}
+			document.getElementById('user_id').value = result.userId;
+			//데이터에 값이 없으면 undefined이 보여지므로 '' 또는 값을 넣어주도록 세팅
+			document.getElementById('user_name').value
+					= result.userName == undefined ? '': result.userName;
+			
+			//날짜 표시부분 년: 월 : 일 시 : 분 : 초 => 년 : 월 : 일
+			if(result.birthDate !=undefined && result.birthDate !='')
+			document.getElementById('user_birth').value 
+					= result.birthDate.substring(0,10);
+			else
+				document.getElementById('user_birth').value 
+					= result.birthDate;
+				
+			document.getElementById('user_phone').value 
+							= result.phone == undefined ? '' : result.phone;
+			
+			document.getElementById('user_addr').value 
+							= result.address == undefined ? '' : result.address;
+			
+			//radio버튼을 찾아서 가지고 있는 value 속성이 => result.gender랑 같은 요소의 checked속성을 변경하겠다.
+			let genders = document.querySelectorAll('.control>input[type="radio"]'); //input radio타입을 젠더스 변수에 넣고..
+			for(let i = 0; i < genders.length; i++){
+				if(genders[i].value == result.gender){
+					genders[i].checked = true;
+				}
+				
+			}
+		}
+		
+		//13.데이터 수정 처리
+		function modMember() {
+			//입력화면의 값을 변수에 담아주기..
+			let id = document.getElementById('user_id').value;
+			let name = document.getElementById('user_name').value;
+			let birth = document.getElementById('user_birth').value;
+			let phone = document.getElementById('user_phone').value;
+			let addr = document.getElementById('user_addr').value;
+			let gen = document.querySelector('input[name="gender"]:checked').value; 
+											//input태그에 name속성중에 gender :중에 checked
+			let param = `id=${id}&nm=${name}&br=${birth}&ad=${addr}&ph=${phone}&gn=${gen}`; //중요..!! //XMLHttpRequest <에넘어갈 파라메터 이름
+							//id = let id //let = name				
+			//ajax 호출하자
+			let xhtp = new XMLHttpRequest();
+			xhtp.open('post','../ModifyMemberServlet') //등록하는 서블릿 필용
+			xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			//post방식으로 보낼때는 head정보를 알려줘야함
+			xhtp.send(param);
+			xhtp.onload = modMemberCallBack;
+		}
+		
+		
+		
+		
+		//14.수정 콜백
+		function modMemberCallBack() {
+			let result = JSON.parse(this.responseText);
+			console.log(result);
+			let selectedTr = document.getElementById(result.retVal.userId);
+			console.log(selectedTr);
+			for(let i = 1; i< titles.length; i ++){
+				selectedTr.children[i].textContent = result.retVal[titles[i]];
+			}
+		}
+		
+		
+			//document.getElementById('user_name').value = result.gender;
+			//각각 값을 바꿔주게끔 하자..
+		
+		// post 방식 요청.
+		// xhtp.open('post', '../GetMemberJsonServ');
+		// xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		// xhtp.send("id=user4&name=Hong&addr=daegu171");
+	</script>
+
+</body>
+
+</html>
