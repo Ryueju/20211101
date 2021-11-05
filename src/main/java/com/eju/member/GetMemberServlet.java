@@ -21,9 +21,13 @@ public class GetMemberServlet extends HttpServlet {
       
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 				//doGet :엔터쳤을 때 창이 바뀌게 됨
-		response.setContentType("text/xml;charset=UTF-8");
+		//response.setContentType("text/xml;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/json;charset=UTF-8");
 		//응답을처리해주는객체
 		PrintWriter out = response.getWriter();
 		

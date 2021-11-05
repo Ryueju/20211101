@@ -8,6 +8,114 @@ import java.util.Map;
 
 public class MemDAO extends DAO {
 	// DAO에 정의해 둔 필드들을 모두 가지게 됨
+	
+	//페이지 별 토탈 건수
+	public int getTotalCount() {
+		connect();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select count(1) from member");
+			if(rs.next()) {
+				int r = rs.getInt(1);
+				System.out.println("조회건수 : " + r);
+				return r;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return 0;
+	}
+	
+	//페이지별 데이터 조회
+	public List<MemberVO> getMemberByPage(String page){
+		connect();
+		List<MemberVO> list = new ArrayList<>();
+		String sql = "select b. * from\r\n"//
+				+ "(select rownum as num, a. * from \r\n"//
+				+ "(select * from member order by 1)a)b\r\n"//
+				+ "where b.num  >=?\r\n"//
+				+ "and b.num <=?";
+		
+		int start = (Integer.parseInt(page) - 1) * 10 +1; //1을 int타입으로 (1-1)*10 + 1 = 0
+		int end = start+9;
+		
+		
+		try {	
+		psmt = conn.prepareStatement(sql);
+		psmt.setInt(1, start);
+		psmt.setInt(2, end);
+		rs=psmt.executeQuery();
+		
+		while(rs.next()) {
+			MemberVO mem = new MemberVO();
+			mem.setAddress(rs.getString("address"));
+			mem.setBirthDate(rs.getString("birth_date")); // "칼럼이름"
+			mem.setGender(rs.getString("gender"));
+			mem.setPhone(rs.getString("phone"));
+			mem.setUserId(rs.getString("user_id"));
+			mem.setUserName(rs.getString("user_name"));
+			list.add(mem);
+		}
+		
+	}catch(SQLException e) {
+		e.printStackTrace();
+		
+	}finally {
+		disconnect();
+	}return list;
+	}
+	//조회기능
+	public List<MemberVO> searchMemberList(MemberVO vo){
+		connect();
+		List<MemberVO> list = new ArrayList<>();
+		String sql = "select * from member k\r\n"
+				+ "where user_id = nvl(?,user_id)\r\n"
+				+ "and nvl(user_name,'1') like '%'||?||'%'\r\n"
+				+ "and nvl(address,'1') like '%'||?||'%'\r\n"
+				+ "and nvl(phone,'1') like '%'||?||'%'"; //||변수조건||
+		
+		if( vo.getGender() !=null && !vo.getGender().equals("all") && vo.getGender() !="" ) {
+			//all이들어오면 젠더조건상관없이 가져옴
+			sql += "and  gender =?"; 
+			//all이 아니면 남/여라는 값이들어올 거니까 비교해주면되고, all이들어오면 젠더조건을 아예 주지 않으면 됨...
+		}
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getUserId());
+			psmt.setString(2, vo.getUserName());
+			psmt.setString(3, vo.getAddress());
+			psmt.setString(4, vo.getPhone());
+			if(vo.getGender() !=null && !vo.getGender().equals("all") && vo.getGender() !="") {
+				psmt.setString(5, vo.getGender());
+			}
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				MemberVO mem = new MemberVO();
+				mem.setAddress(rs.getString("address"));
+				mem.setBirthDate(rs.getString("birth_date")); // "칼럼이름"
+				mem.setGender(rs.getString("gender"));
+				mem.setPhone(rs.getString("phone"));
+				mem.setUserId(rs.getString("user_id"));
+				mem.setUserName(rs.getString("user_name"));
+				list.add(mem);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	finally {
+			disconnect();
+		}
+		return list;
+		
+	}
+	
+	
+	
+	
 	// 수정 기능
 	public Map<String, Object> updateMember(MemberVO vo){
 		//retCode : OK, retVal: vo
