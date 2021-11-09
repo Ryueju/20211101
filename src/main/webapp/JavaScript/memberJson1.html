@@ -222,6 +222,12 @@ caption{
 					} else{
 						a.textContent = i;
 					}
+					
+					//example
+					function paging() {
+						console.log("currentPage: " +currentPage);
+						totalPage = Math.ceil(totalData / dataPerPage);
+					}
 						
 				 //<a href = "">3</a>
 				a.onclick = function(){

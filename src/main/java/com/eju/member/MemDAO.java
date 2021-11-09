@@ -6,8 +6,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.eju.member.ItemVO;
+
 public class MemDAO extends DAO {
 	// DAO에 정의해 둔 필드들을 모두 가지게 됨
+	
+	//상품리스트
+	public List<ItemVO> getItemList(){
+		connect();
+		String sql = " select * from item order by 1" ;
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		 try {
+			 stmt = conn.createStatement();
+			 rs=stmt.executeQuery(sql);
+			 while(rs.next()) {
+				 ItemVO vo = new ItemVO();
+				 vo.setLikeit(rs.getDouble("like_it"));
+				 vo.setOriginPrice(rs.getInt("origin_price"));
+				 vo.setProdDesc(rs.getString("prod_desc"));
+				 vo.setProdId(rs.getInt("prod_id"));
+				 vo.setProdImage(rs.getString("prod_image"));
+				 vo.setProdName(rs.getString("prod_item"));
+				 vo.setSalePrice(rs.getInt("sale_price"));
+				 list.add(vo);
+			 } 
+		 }
+			 catch(SQLException e) {
+				 e.printStackTrace();
+			 } finally {
+				 disconnect();
+			 }
+			 return list;
+		 }
+	
 	
 	//페이지 별 토탈 건수
 	public int getTotalCount() {
@@ -266,4 +297,6 @@ public class MemDAO extends DAO {
 		}
 		return memberList;
 	}
+
+	
 }

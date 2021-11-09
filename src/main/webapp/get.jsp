@@ -28,6 +28,12 @@
 	
 	<a href="member.jsp?id=<%=id %>&pw=<%=pw %>">회원정보</a>
 	
+	<script>
+		let doc = document.getElementById('id');
+		doc.innerHTML = '???'; //<div>????</div>
+		doc.childNodes[0].id='???';
+		doc.getElementByTagName = '????'; 
+	</script>
 </body>
 
 </html>
