@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery/memberList.html</title>
+<!-- <script src='jquery-3.6.0.min.js'></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    function Member(id,name,score){
+        //생성자함수
+        //매개값으로 들어오는 값 id,name,score
+        this.id = id; //this라는 키워드에 id값을 너어준 것
+        this.name = name;
+        this.score = score;
+    }
+    let members = [
+         new Member('user1','포챠코',80),
+         new Member('user2','쿠로미',85),
+         new Member('user3','마이멜로디',90)
+
+    ];
+	$(document).ready(function(){
+        //document가 로딩 다 된 후에 이 function을 실행하세용//전체페이지를 로드 후 실행.
+      //  let ul = document.createElement('ul');
+     //   members.forEach(function(val,ind){
+       //     let li = document.createElement('li');
+      //      li.textContent = `id: ${val.id}, name: ${val,name}, score: ${val,score}`;
+       //     ul.appendChild(li);
+     //   });
+      //  document.getElementById('show').appendChild(ul);
+        let ul = $('<ul id="addt"><li>apple</li></ul>');
+        console.log(ul);
+    ///    ul = document.createElement('ul');
+     //   console.log(ul);
+
+            $(members).each(function(ind, val){ //each라는 jquery메소드 사용 //ind,val순서
+            //하위요소를 append함
+            console.log(val,ind);
+               $(ul).append($('<li>').text(`id: ${val.id}, name: ${val.name}, score: ${val.score}`));
+                   //     $(ul).append(li);
+            });
+            $('#show').append(ul); //show에다가 ul달아줌
+    }); 
+</script>
+</head>
+<body>
+	<div id='show'></div>
+    <!-- <ul><li>아이디,이름,점수</li><li>...</li><li>...</li></ul>-->
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery.selector.html</title>
+    <script src="../jQuery/jquery-3.6.0.js"></script>
+    <script>
+
+        class Student{
+             constructor(studNo, studName, math, eng, hobby){
+
+                 this.studName = studName;
+                 this.studNo = studNo;
+                 this.math = math;
+                 this.eng = eng;
+                 this.hobby  = hobby;
+
+                }
+                getAverage(){
+                    return Math.round((this.math+this.eng)/2);
+                }
+        }
+        const students = [];
+        let s1 = new Student('21-01','포챠코',90,80,'탑꾸');
+        let s2 = new Student('21-02','쿠로미',95,80,'공방뛰기');
+        let s3 = new Student('21-03','마이멜로디',70,80,'홈마');
+        let s4 = new Student('21-04','바츠마루',80,69,'팔이');
+        let s5 = new Student('21-05','키티',70,88,'야바위');
+
+        students.push(s1);
+        students.push(s2);
+        students.push(s3);
+        students.push(s4);
+        students.push(s5);
+        
+        
+        $(document).ready(function(){
+            //여기서루핑돌자
+            let $table = $('<table>').attr('border','1');
+            let $thead = $('<thead>');
+            let $tbody = $('<tbody>');
+                $table.append($thead);
+                    // let $td = $('<td>').append(
+                        
+                    //     $('<td>').text('ID')
+                    // );
+               $table.append($tbody);
+
+                        //Thead
+                        let $tr = $('<tr>').append(
+                            $('<th>').text('학번'),
+                                $('<th>').text('이름'),
+                                    $('<th>').text('영어'),
+                                        $('<th>').text('수학'),
+                                            $('<th>').text('평균'),
+                                                $('<th>').text('취미'),
+                                                    $('<th>').text('버튼')
+                                );
+                                $thead.append($tr);
+      
+               $(students).each(function(ind,val){//jquery가 제공하는반복메소드
+                console.log(val);
+                   // let bnt = $('<button>삭제</button>').click(delFnc);
+                    let $tr = $('<tr>').click(trFnc).append(                      
+                        $('<td>').text(val.studNo),
+                            $('<td>').text(val.studName),
+                                $('<td>').text(val.math),
+                                    $('<td>').text(val.eng),
+                                        $('<td>').text(val.getAverage()),
+                                            $('<td>').text(val.hobby),
+                                                $('<td>').click(tdFnc).append($('<button>삭제</button>').click(delFnc))
+                    );
+                    $tr.click(trFnc);
+                   // $tr.mouseover(mouseOverFnc);
+                   // $tr.mouseout(mouseOutFnc);
+                   $tr.on({
+                       'click' : trFnc,
+                       'mouseover' : mouseOverFnc,
+                        'mouseout' : mouseOutFnc
+                    } );
+                    $tbody.append($tr);
+
+               }); 
+               $('#show').append($table);
+
+               function mouseOverFnc(){
+                   $(this).css({
+                       'background-color' : 'grey' ,
+                       'color' : 'white'
+                    }); //css:스타일지정
+
+               }
+               function mouseOutFnc(){
+                $(this).css({
+                    'background-color' : '',
+                    'color' : ''
+                } );
+               }
+
+
+               function trFnc(){
+                   console.log($(this));
+                let sno =      $(this).children().eq(0).text();
+                let sname =    $(this).children().eq(1).text();
+                window.alert(`학번 : ${sno}, 이름 : ${sname} `)
+               }
+
+               function tdFnc(){
+                   console.log($(this));
+                }
+                
+                //삭제기능
+                function delFnc(){
+                event.stopPropagation();//event라는 object가 갖고있는 요소를 전파를 차단할게
+                 console.log($(this));
+                 $(this).parentsUntil('tbody').remove(); //parentsUntil() 끝까지..
+                 //parents() > 싹다 지움
+                // let hob =   $(this).parent().prev().text(); //$(this)는 버튼태그
+                // let avg =   $(this).parent().prev().pre().text();
+                // window.alert(`취미 : ${hob}, 평균 : ${avg}`);
+            }
+
+            //    let $div =   $('<div />').html('<h3>HELLO~</h3>').attr('id','id1'); //text도 tag넣어서도 가능
+            //    let $p = $('<p />').text('<h3>hello~</h3>').attr('class','id1');
+
+            //    $('body').append($div, $p);
+
+            //    console.log($('div>#id1>h3').text());
+            //    console.log($('p.id1').text());
+        });
+
+    </script>
+</head>
+<body>
+        <!-- <div>
+            <h3>bad</h3>
+        </div>
+        <p>bad</p> -->
+        <h3 style="text-align: center;">STUDENT LIST</h3>
+        <div id="show"></div>
+</body>
+</html>

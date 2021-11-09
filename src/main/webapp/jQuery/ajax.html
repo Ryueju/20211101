@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery/ajax.html</title>
+    <script src="../jQuery/jquery-3.6.0.js"></script>
+    <script>
+     
+     $(document).ready(function(){
+             //ajax : XMLHttpRequest();
+        $.ajax({//$.ajax({오브젝트형식});
+        
+      
+
+url : '../javaScript/MOCK_DATA.json ' , //요청페이지(txt,html,xml,json)
+type:'get', //요청방식 get,post default:get
+data: {
+  //  ' id=3 & name = hong', //parameter => request.getParameter();
+//  id: 3,
+//name : 'hong'
+},
+dataType : 'json', //json data타입으로 지정을 해 놓으면.. 
+                          //JSON.parse(this.responseText)
+success : successCallBack,
+error : errorCallBack
+}); 
+function successCallBack(result, status, xhr){
+//페이지를 지정
+console.log(result, status, xhr);
+}
+function errorCallBack(reject){
+window.alert(`cond: ${reject.status}, msg: ${reject.statusText}`);
+}
+ 
+
+        let $table = $('<table>').attr('border','1');
+        let $thead = $('<thead>');
+        let $tbody = $('<tbody>');
+            $table.append($thead);
+            $table.append($tbody);
+
+            //thead
+            let $tr = $('<tr>').append(
+                $('<th>').text('ID'),
+                    $('<th>').text('F_NAME'),
+                        $('<th>').text('L_NAME'),
+                            $('<th>').text('EMAIL'),
+                                $('<th>').text('GENDER'),
+                                    $('<th>').text('IP ADDRESS'),
+            );
+            $thead.append($tr);
+
+            $(members).each(function(ind,val){
+                    let $tr = $('<tr>').append(
+                        $)
+                    );
+            })
+});
+$('#show').append($tr);
+
+
+       
+    </script>
+
+</head>
+<body>
+    <h3> MEMBER LIST</h3>
+     <div id="show"></div>
+</body>
+</html>

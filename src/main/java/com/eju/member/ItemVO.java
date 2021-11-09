@@ -1,0 +1,60 @@
+package com.eju.member;
+
+public class ItemVO {
+	private int prodId;
+	private String prodName;
+	private String prodDesc;
+	private double likeit;
+	private int originPrice;
+	private int salePrice;
+	private String prodImage;
+	
+	
+	@Override
+	public String toString() {
+		return "ItemVO [prodId=" + prodId + ", prodName=" + prodName + ", prodDesc=" + prodDesc + ", likeit=" + likeit
+				+ ", originPrice=" + originPrice + ", salePrice=" + salePrice + ", prodImage=" + prodImage + "]";
+	}
+	public int getProdId() {
+		return prodId;
+	}
+	public void setProdId(int prodId) {
+		this.prodId = prodId;
+	}
+	public String getProdName() {
+		return prodName;
+	}
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+	public String getProdDesc() {
+		return prodDesc;
+	}
+	public void setProdDesc(String prodDesc) {
+		this.prodDesc = prodDesc;
+	}
+	public double getLikeit() {
+		return likeit;
+	}
+	public void setLikeit(double likeit) {
+		this.likeit = likeit;
+	}
+	public int getOriginPrice() {
+		return originPrice;
+	}
+	public void setOriginPrice(int originPrice) {
+		this.originPrice = originPrice;
+	}
+	public int getSalePrice() {
+		return salePrice;
+	}
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
+	}
+	public String getProdImage() {
+		return prodImage;
+	}
+	public void setProdImage(String prodImage) {
+		this.prodImage = prodImage;
+	}
+}

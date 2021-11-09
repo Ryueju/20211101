@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery/jQuery.html</title>
+<script src='jquery-3.6.0.min.js'></script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		//DOMContentLoaded가 로딩되어지면~
+	});
+	btn.addEventListener('click', function() {
+
+	});
+	btn.onclick = function() {
+
+	};
+
+	$(document).ready(loadFnc);
+	
+	function loadFnc() {
+		//ready : 페이지를 로딩해서 다 읽어들인다음 function을 실행하겠다
+
+		let table = $('<table></table>');
+		$(table).attr('id', 'tdl'); //attr : attribute
+		$(table).append($('<tbody></tbody>'));
+
+		//console.log(table); //<table></table>
+
+		//$ : 제이쿼리 표현식
+		$(table).append($('<caption>TABLE</caption>'));
+		$('div>div').append(table); //div 태그이름 or #show 태그id div>div 속성값을 통해 요소를 선택하는 방식들..
+		console.log(table);
+
+		$('#tbl>caption').text(); //innerText(textContent),innerHTML
+	};
+</script>
+</head>
+<body>
+	<div id='container'>
+		<div id="show"></div>
+	</div>
+
+</body>
+</html>
