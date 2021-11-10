@@ -11,7 +11,7 @@
      $(document).ready(function(){
              //ajax : XMLHttpRequest();
     $.ajax({//$.ajax({오브젝트형식});
-        url : '../javaScript/MOCK_DATA.json ' , //요청페이지(txt,html,xml,json)
+        url : '../javaScript/MOCK_DATA.json' , //요청페이지(txt,html,xml,json)
         type:'get', //요청방식 get,post default:get
         data: {
   //  ' id=3 & name = hong', //parameter => request.getParameter();
@@ -25,11 +25,10 @@ error : errorCallBack
 }); 
 function successCallBack(result, textStatus, xhr){
 //페이지를 지정
-console.log(result, status, xhr);
-$(data).each(function(ind,val) =>  { //arrow func.
+console.log(result, textStatus, xhr);
+$(data).each((ind,val) => { //arow function //생성자x 메서드x
 
 
-    
 });
 }
 function errorCallBack(reject){

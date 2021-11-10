@@ -43,7 +43,7 @@ public class FileUploadServlet extends HttpServlet {
 		
 		MultipartRequest multi = new MultipartRequest(request,saveDir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
-		String prod_name = 	multi.getParameter("prod_name");
+		String prod_item = 	multi.getParameter("prod_item");
 		String prod_desc = multi.getParameter("prod_desc");
 		String like_it = multi.getParameter("likt_it");
 		String origin_price = multi.getParameter("origin_price");
@@ -51,7 +51,7 @@ public class FileUploadServlet extends HttpServlet {
 		String prod_image = multi.getParameter("prod_image");
 		
 		ItemVO vo  = new ItemVO();
-		vo.setProdName(prod_name);
+		vo.setProdName(prod_item);
 		vo.setProdDesc(prod_desc);
 		vo.setLikeit(Double.parseDouble(like_it));
 		vo.setOriginPrice(Integer.parseInt(origin_price));
