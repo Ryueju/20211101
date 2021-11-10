@@ -10,6 +10,30 @@ import com.eju.member.ItemVO;
 
 public class MemDAO extends DAO {
 	// DAO에 정의해 둔 필드들을 모두 가지게 됨
+	//상품 업로드
+	public ItemVO uploadProduct(ItemVO vo) {
+		connect(); //db연결
+		String sql = "insert into item(prod_id,prod_item,prod_desc,like_it,origin_price,sale_price,prod_image"
+					+ "values((select max(prod_id)+1 from where item),?,?,?,?,?,?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getProdName());
+			psmt.setString(2, vo.getProdDesc());
+			psmt.setDouble(3, vo.getLikeit());
+			psmt.setInt(4, vo.getOriginPrice());
+			psmt.setInt(5, vo.getSalePrice());
+			psmt.setString(6, vo.getProdImage());
+			int r = psmt.executeUpdate(); //실제 쿼리 실행
+			System.out.println(r + "건 입력"); //처리 후 메세지 출력
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return vo;
+	}
+	
 	
 	//상품리스트
 	public List<ItemVO> getItemList(){

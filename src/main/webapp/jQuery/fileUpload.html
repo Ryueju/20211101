@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery/fileUpload.html</title>
+    <script type="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <fieldset>
+
+        <legend>파일 업로드</legend>
+        <form id="frm" action="../FileUploadServlet" method="post" enctype="multipart/form-data" onsubmit="formSubmit()"> 
+                                            <!--파일전송시-->
+            <table>
+                <tr>
+                    <td>상품명</td>
+                    <td><input type="text" name="prod_name"></td>
+                </tr>
+                <tr>
+                    <td>상품설명</td>
+                    <td><textarea name="prod_desc" cols="30" rows=""></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>평점</td>
+                    <td><input type="text" name="like_it" ></td>
+                </tr>
+
+                <tr>
+                    <td>가격</td>
+                    <td><input type="number" name="origin_price" ></td>
+                </tr>
+                <tr>
+                    <td>할인가격</td>
+                    <td><input type="number" name="sale_price" ></td>
+                </tr>
+                    <tr>
+                    <td>파일</td>
+                    <td><input type="file" name="prod_image"></td>
+                </tr>
+                
+               <tr>
+                    <td colspan="2"><input type="submit" value="업로드"></td>
+                </tr>
+               
+               
+            </table>
+        </form>
+    </fieldset>
+    
+    
+    <script>
+    		function formSubmit(){
+    			event.preventDefault();
+    			let formData = new FormData(); //key:value 형식
+    			formData.append('prod_')
+    			//ajax 호출 파일 업로드
+    			$.ajax({
+    				url:$('#frm').attr('action'), // ../FormUploadSer
+    				type:'post',
+    				data:' ',
+    				processData:false,
+    				contentType:false,
+    				success:function(){
+    					
+    				},
+    				error: function(){
+    					
+    				}
+    			})
+    		}
+    		
+    </script>
+</body>
+</html>
