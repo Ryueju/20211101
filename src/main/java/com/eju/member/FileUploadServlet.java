@@ -35,7 +35,7 @@ public class FileUploadServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
-		System.out.println(request.getParameter("author"));
+		//System.out.println(request.getParameter("author"));
 		
 		int maxSize  = 1024 * 1024 * 10;
 		ServletContext context = getServletContext();
@@ -65,6 +65,8 @@ public class FileUploadServlet extends HttpServlet {
 		 * "</h3>"); out.println("<h3>"+title+"</h3>");
 		 * out.println("<img src=\"upload/"+fileName+"\">");
 		 */
+		
+		//파일: 서버, 사용자 입력값: db저장
 		MemDAO dao = new MemDAO();
 		dao.uploadProduct(vo);
 		

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jquery/ajax.html</title>
     <script src="../jQuery/jquery-3.6.0.js"></script>
+    <!-- <script src="../jQuery/jquery-3.6.0.js"></script> -->
     <script>
      
      $(document).ready(function(){
@@ -23,18 +24,49 @@ dataType : 'json', //json data타입으로 지정을 해 놓으면..
 success : successCallBack,
 error : errorCallBack
 }); 
-function successCallBack(result, textStatus, xhr){
+//success 콜백함수
+function successCallBack(data, textStatus, jqXHR){
 //페이지를 지정
-console.log(result, textStatus, xhr);
+console.log(data, textStatus, jqXHR);
+//let obj = data[0]; //{id:?,first_name:?, last_name:?...}
+let fields = ['id', 'first_name', 'last_name','email','gender','ip_address']; 
+//['id'. 'first_name', last_name','email'...]
+
+//table,tbody
+    let table = $('<table>').attr({
+        'id':'tb1',
+        'border':1
+    });
+    let tbody = $('<tbody>'); 
+        $(table).append(tbody);
+//tr요소
 $(data).each((ind,val) => { //arow function //생성자x 메서드x
-
-
+    let tr = $('<tr>');
+        for(let field of fields){
+            // $(tr).append($('<td>').text(val[field]));
+                $('<td>').text(val[field]).appendTo(tr);
+        }
+            $(tr).append($('<button>').text('삭제'));
+            $(tbody).append(tr);
 });
+    //show
+    $('show').append(table);
 }
+
+//click 콜백함수
+function clickFnc(){
+    event.stopPropagation(); //stopPropagation: event의 버블링을 막기위해
+    console.log($(this));
+   let trClone = $(this).parent().clone();
+   $(this).parent().after(trClone);
+  //  $(this).after(trClone); //before(trClone) 복사
+  //$(this).parent().remove(); //삭제하기
+}
+
 function errorCallBack(reject){
 window.alert(`cond: ${reject.status}, msg: ${reject.statusText}`);
+   
 }
- 
 
         let $table = $('<table>').attr('border','1');
         let $thead = $('<thead>');
@@ -53,19 +85,16 @@ window.alert(`cond: ${reject.status}, msg: ${reject.statusText}`);
             );
             $thead.append($tr);
 
-            $(members).each(function(ind,val){
-                    let $tr = $('<tr>').append(
-                        $)
-                    );
-            });
+           
 
-$('#show').append($tr);
+    $('#show').append($tr);
 
 
-       
+                                    });
     </script>
 
 </head>
+
 <body>
     <h3> MEMBER LIST</h3>
      <div id="show"></div>

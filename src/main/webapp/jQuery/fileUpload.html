@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery/fileUpload.html</title>
-    <script type="../js/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
     <fieldset>
@@ -62,19 +62,19 @@
                         thead = $('<thead>');
                            $(thead).append(
 
-                               $('<tr>').append(
-                                   $('<tH>').text('상품ID'),
-                                    $('<tr>').text('상품명'),
-                                        $('<tr>').text('평가점수'),
-                                            $('<tr>').text('가격'),
-                                                $('<tr>').text('할인가격'),
-                                                    $('<tr>').text('이미지'),
-                                                        );
-                            $()
+                            $('<tr>').append(
+                            $('<tH>').text('상품ID'),
+                            $('<tr>').text('상품명'),
+                            $('<tr>').text('평가점수'),
+                            $('<tr>').text('가격'),
+                            $('<tr>').text('할인가격'),
+                            $('<tr>').text('이미지'),
+                                                        )
+                            
                             );
             },
             error: function(){
-                    console.log(error);
+                   // console.log(error);
             }
         })
 
@@ -82,11 +82,11 @@
     			event.preventDefault();
     			let formData = new FormData(); //key:value 형식
     			formData.append('prod_item', $('input[name="prod_item"]').val()); //prod_item:맥심모카골드
-                formData.append('prod_desc', $('textarea[name="prod_desc"]').text());
+                formData.append('prod_desc', $('textarea[name="prod_desc"]').val());
                 formData.append('like_it', $('input[name="like_it"]').val());
                 formData.append('origin_price', $('input[name="origin_price"]').val());
                 formData.append('sale_price', $('input[name="sale_price"]').val());
-                formData.append('prod_image',document.querySelector('input[name="sale_price"]').files[0]);
+                formData.append('prod_image',document.querySelector('input[name="prod_image"]').files[0]);
 
                 formData.forEach(function(val,ind){
                     console.log(val);
